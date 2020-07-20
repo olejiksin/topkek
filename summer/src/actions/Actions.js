@@ -20,6 +20,7 @@ export const logIn = (username, password) => {
         axios.post(`/login`, data)
             .then((response) => {
                 data.token = response.data;
+                console.log(response.data);
                 dispatch(SuccessAuth(data))
             })
             .catch((error) => {

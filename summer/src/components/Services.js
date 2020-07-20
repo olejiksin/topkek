@@ -3,8 +3,8 @@ import React from "react";
 
 export default class Services extends Component {
     render() {
-        const {stopService, addCopyOfInstance, startService, username, deleteService, services} = this.props;
-        const {serv} = services.map((service, index) =>
+        const {stopService, addCopyOfInstance, startService, deleteService, services} = this.props;
+        const serv = services.map((service, index) =>
             <div key={index}>
                 <tr>
                     <td>{service.instanceName}</td>
@@ -41,7 +41,7 @@ export default class Services extends Component {
                         <td>URL</td>
                         <td>Status</td>
                     </tr>
-                    {serv}
+                    {services == null ? '<h1>Loading</h1>' : serv}
                     </tbody>
                 </table>
             </div>

@@ -65,6 +65,7 @@ export function reducer(state = State, action) {
             }
         }
         case SUCCESS_AUTH: {
+            console.log(state);
             return {
                 ...state,
                 username: action.payload.login,
@@ -72,6 +73,7 @@ export function reducer(state = State, action) {
             }
         }
         case SUCCESS: {
+            console.log(...state);
             return {
                 ...state,
                 services: action.payload.services
@@ -84,7 +86,7 @@ export function reducer(state = State, action) {
             };
         }
         default: {
-            return state;
+            return {...state};
         }
     }
 }
