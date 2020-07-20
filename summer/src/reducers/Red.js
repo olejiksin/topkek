@@ -9,10 +9,10 @@ import {
 } from "../types/types";
 
 export const State = {
-    username: null,
-    services: [],
+    username: localStorage.username,
+    services: localStorage.services,
     error: null,
-    token: null
+    token: localStorage.token
 };
 
 export function reducer(state = State, action) {
@@ -73,7 +73,6 @@ export function reducer(state = State, action) {
             }
         }
         case SUCCESS: {
-            console.log(...state);
             return {
                 ...state,
                 services: action.payload.services
@@ -86,7 +85,7 @@ export function reducer(state = State, action) {
             };
         }
         default: {
-            return {...state};
+            return state;
         }
     }
 }

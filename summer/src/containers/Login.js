@@ -15,7 +15,7 @@ class Login extends Component {
 
     render() {
         const {logIn} = this.props;
-        const {username,password} = this.state;
+        const {username, password} = this.state;
         return (
             <div>
                 <div className={'login'}>
@@ -27,7 +27,7 @@ class Login extends Component {
                     <input className={'text-input'} type={"password"}
                            onChange={(event) => this.setState({password: event.target.value})}
                            name={'password'}/>
-                    <Link className={"log-reg-btn"} onClick={()=>logIn(username, password)}
+                    <Link className={"log-reg-btn"} onClick={() => logIn(username, password)}
                           to={`/applications/${username}`}> Next</Link>
                 </div>
             </div>);
@@ -35,7 +35,7 @@ class Login extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    logIn,
+    logIn: (username, password) => dispatch(logIn(username, password)),
 });
 
 const mapStateToProps = store => {

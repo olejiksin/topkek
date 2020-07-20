@@ -3,7 +3,6 @@ import {
     ADD_COPY_INSTANCE,
     ADD_INSTANCE, DELETE_SERVICE,
     ERROR,
-    LOGOUT,
     START_SERVICE,
     STOP_INSTANCE,
     SUCCESS,
@@ -12,6 +11,8 @@ import {
 
 
 export const logIn = (username, password) => {
+    localStorage.username=username;
+    localStorage.services=[];
     let data = {
         login: username,
         password: password
@@ -20,7 +21,7 @@ export const logIn = (username, password) => {
         axios.post(`/login`, data)
             .then((response) => {
                 data.token = response.data;
-                console.log(response.data);
+                localStorage.token=response.data;
                 dispatch(SuccessAuth(data))
             })
             .catch((error) => {
@@ -34,6 +35,7 @@ export const getServices = (username) => {
         axios.get(`/applications/${username}`)
             .then(response => {
                 dispatch(SuccessActive(response.data));
+                localStorage.services=response.data;
             })
             .catch(error => {
                 dispatch(Error(error.message))
@@ -44,7 +46,7 @@ export const getServices = (username) => {
 export const addCopyOfInstance = (data) => {
 
     return dispatch => {
-        axios.post(`/api/application`, data)
+        axios.post(`/applications`, data)
             .then((response) => {
                 dispatch(copyOfInstance(response.data))
             })
@@ -59,7 +61,7 @@ export const addNewInstance = (git, username) => {
         ownerName: username
     };
     return dispatch => {
-        axios.post(`/api/application`, data)
+        axios.post(`/applications`, data)
             .then((response) => {
                 dispatch(newInstance(response.data))
             })

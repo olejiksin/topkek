@@ -22,7 +22,11 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        this.props.getServices(this.props.username);
+        const {getServices, username} = this.props;
+        if (username !== null) {
+            getServices(localStorage.username);
+        }
+        console.log(localStorage);
     }
 
     render() {
@@ -55,28 +59,39 @@ class Profile extends Component {
                     </button>
                 </form>
                 <br/>
-                <Services username={username} services={services} stopService={stopService()}
-                          addCopyOfInstance={addCopyOfInstance()} startService={startService()}
-                          deleteService={deleteService()}/>
+                <Services username={username} services={services} stopService={stopService}
+                          addCopyOfInstance={addCopyOfInstance} startService={startService}
+                          deleteService={deleteService}/>
             </div>
         )
     }
 }
 
 const mapStateToProps = store => {
-    console.log(store);
     return {
         username: store.username,
         services: store.services
     }
 };
 const mapDispatchToProps = dispatch => ({
-    addNewInstance,
-    getServices,
-    stopService,
-    addCopyOfInstance,
-    startService,
-    deleteService
+    addNewInstance: () => {
+        dispatch(addNewInstance())
+    },
+    getServices: () => {
+        dispatch(getServices())
+    },
+    stopService: () => {
+        dispatch(stopService())
+    },
+    addCopyOfInstance: () => {
+        dispatch(addCopyOfInstance())
+    },
+    startService: () => {
+        dispatch(startService())
+    },
+    deleteService: () => {
+        dispatch(deleteService())
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Profile);
