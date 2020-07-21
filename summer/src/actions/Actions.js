@@ -2,18 +2,24 @@ import axios from 'axios';
 import {
     ADD_COPY_INSTANCE,
     ADD_INSTANCE, DELETE_SERVICE,
-    ERROR,
+    ERROR, LOGOUT,
     START_SERVICE,
     STOP_INSTANCE,
     SUCCESS,
     SUCCESS_AUTH
 } from "../types/types";
 
-
+export const logout = () => {
+    // localStorage.userId = null;
+    // localStorage.username = null;
+    // localStorage.token = null;
+    return dispatch => {
+        dispatch(logOut);
+    }
+};
 export const logIn = (username, password) => {
     localStorage.username = username;
     localStorage.services = [];
-    localStorage.userId=0;
     let data = {
         login: username,
         password: password
@@ -23,8 +29,9 @@ export const logIn = (username, password) => {
             .then((response) => {
                 data.token = response.data;
                 dispatch(SuccessAuth(data));
-                console.log(response.data);
-                localStorage.userId=response.data.userId;
+                let token = {"status": data.token.status, "userId": data.token.userId, "value": data.token.value};
+                localStorage.token=("token",JSON.stringify(token));
+                localStorage.userId=data.token.userId;
             })
             .catch((error) => {
                 dispatch(Error(error))
@@ -36,9 +43,9 @@ export const getServices = (userid) => {
     return dispatch => {
         axios.get(`/applications/${userid}`)
             .then(response => {
-                console.log(response.data);
                 dispatch(SuccessActive(response.data));
                 localStorage.services = response.data;
+                console.log(localStorage);
             })
             .catch(error => {
                 dispatch(Error(error.message))
@@ -115,7 +122,12 @@ export const startService = (instanceId) => {
             });
     }
 };
-
+export const logOut = () => {
+    return {
+        type: LOGOUT,
+        payload: {}
+    }
+};
 export const deleteServ = (data) => {
     return {
         type: DELETE_SERVICE,

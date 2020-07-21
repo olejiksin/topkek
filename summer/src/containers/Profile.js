@@ -7,7 +7,7 @@ import {
     addCopyOfInstance,
     addNewInstance,
     deleteService,
-    getServices,
+    getServices, logout,
     startService,
     stopService
 } from "../actions/Actions";
@@ -22,19 +22,21 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        const {getServices, userId} = this.props;
-        console.log(userId);
-        if (userId!=0 && userId!=undefined) {
-            getServices(userId);
-        }
+        let time = setTimeout(() => {
+            const {getServices, userId} = this.props;
+            if (userId !== 0 && userId !== null && userId !== undefined) {
+                getServices(userId);
+            }
+        }, 1000)
+
     }
 
     render() {
-        const {stopService, username, addNewInstance, services, addCopyOfInstance, startService, deleteService} = this.props;
+        const {stopService, username, addNewInstance, services, addCopyOfInstance, startService, deleteService, logout} = this.props;
         return (
             <div>
                 <div>
-                    <Link className={'btn'} to='/login/'>Exit</Link>
+                    <Link className={'btn'} to='/login/' onClick={() => logout()}>Exit</Link>
                     <Link className={'btn'} to='/signUp/'>Registration</Link>
                 </div>
                 <br/>
@@ -69,15 +71,18 @@ class Profile extends Component {
 
 const mapStateToProps = store => {
     return {
-        userId:store.userId,
+        userId: store.userId,
         token: store.token,
         username: store.username,
         services: store.services
     }
 };
 const mapDispatchToProps = dispatch => ({
-    addNewInstance: (git,user) => {
-        dispatch(addNewInstance(git,user))
+    logout: () => {
+        dispatch(logout())
+    },
+    addNewInstance: (git, user) => {
+        dispatch(addNewInstance(git, user))
     },
     getServices: (userId) => {
         dispatch(getServices(userId))

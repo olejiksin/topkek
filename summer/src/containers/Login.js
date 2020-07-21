@@ -13,9 +13,10 @@ class Login extends Component {
         }
     }
 
+
     render() {
         const {logIn} = this.props;
-        const {username, password, token} = this.state;
+        const {username, password} = this.state;
         return (
             <div>
                 <div className={'login'}>

@@ -1,7 +1,7 @@
 import {
     ADD_COPY_INSTANCE,
     ADD_INSTANCE, DELETE_SERVICE,
-    ERROR,
+    ERROR, LOGOUT,
     START_SERVICE,
     STOP_INSTANCE,
     SUCCESS,
@@ -13,9 +13,12 @@ export const State = {
     services: [],
     error: null,
     token: {
-        value: null,
-        userId: null,
-        status: null
+        // value:JSON.parse(localStorage.getItem('token')).value,
+        // status:JSON.parse(localStorage.getItem('token')).status,
+        // userId:JSON.parse(localStorage.getItem('token')).userId
+        value:null,
+        status:null,
+        userId:null
     },
     userId: localStorage.userId
 };
@@ -73,7 +76,7 @@ export function reducer(state = State, action) {
             return {
                 ...state,
                 username: action.payload.login,
-                token: action.payload.token,
+                token:action.payload.token,
                 userId: action.payload.token.userId
             }
         }
@@ -88,6 +91,11 @@ export function reducer(state = State, action) {
                 ...state,
                 error: action.payload.error
             };
+        }
+        case LOGOUT:{
+            return{
+
+            }
         }
         default: {
             return state;

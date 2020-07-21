@@ -13,7 +13,7 @@ export default class Services extends Component {
                     <td>{service.gitUrl}</td>
                     <td>{ins.instanceName}</td>
                     <td>{ins.instanceUrl}</td>
-                    <td>{ins.status}</td>
+                    {ins.status==='active'?<td style={{color:'green'}}>{ins.status}</td>:<td style={{color:'darkred'}}>{ins.status}</td>}
                     <td>
                         <button className={'btn'} onClick={() => addCopyOfInstance(ins)}>Add copy</button>
                     </td>
@@ -42,9 +42,9 @@ export default class Services extends Component {
                     <thead>
                     <tr>
                         <td>GitHub URL</td>
-                        <td>instance name</td>
-                        <td>instance url</td>
-                        <td>instance status</td>
+                        <td>Instance name</td>
+                        <td>Instance url</td>
+                        <td>Instance status</td>
                         <td>
                         </td>
                         <td>
