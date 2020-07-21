@@ -25,7 +25,7 @@ class Profile extends Component {
         const {getServices, userId} = this.props;
         console.log(userId);
         if (userId!=0 && userId!=undefined) {
-            getServices(1);
+            getServices(userId);
         }
     }
 

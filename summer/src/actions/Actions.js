@@ -23,7 +23,6 @@ export const logIn = (username, password) => {
             .then((response) => {
                 data.token = response.data;
                 dispatch(SuccessAuth(data));
-                console.log("KEKOS");
                 console.log(response.data);
                 localStorage.userId=response.data.userId;
             })

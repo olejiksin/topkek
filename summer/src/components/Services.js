@@ -5,7 +5,7 @@ export default class Services extends Component {
     render() {
         const {stopService, addCopyOfInstance, startService, deleteService, services} = this.props;
         console.log(services);
-        if (services) {
+        // if (services) {
             const serv = services.map((service, index) =>
                 <div key={index}>
                     {service.instance.map((ins, index) =>
@@ -55,6 +55,6 @@ export default class Services extends Component {
             );
         }
     }
-}
+
 
 

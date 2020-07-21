@@ -13,9 +13,9 @@ export const State = {
     services: [],
     error: null,
     token: {
-        value: localStorage.token.value,
-        userId: localStorage.token.userId,
-        status: localStorage.token.status
+        value: null,
+        userId: null,
+        status: null
     },
     userId: localStorage.userId
 };
