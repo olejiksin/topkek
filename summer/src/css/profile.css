@@ -11,7 +11,12 @@
     border: 2px solid #f5f7f8;
 }
 
+td{
+    width: 4%;
+}
 .table {
+    table-layout: fixed;
+    width: 100%;
     padding: 10px;
     font-size: 16px;
     font-weight: bold;
