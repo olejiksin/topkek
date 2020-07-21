@@ -27,7 +27,7 @@ class Profile extends Component {
             if (userId !== 0 && userId !== null && userId !== undefined) {
                 getServices(userId);
             }
-        }, 1000)
+        }, 2000)
 
     }
 

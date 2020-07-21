@@ -17,6 +17,8 @@ export const logout = () => {
         dispatch(logOut);
     }
 };
+
+
 export const logIn = (username, password) => {
     localStorage.username = username;
     localStorage.services = [];
@@ -25,13 +27,13 @@ export const logIn = (username, password) => {
         password: password
     };
     return dispatch => {
-        axios.post(`/login`, data)
+        axios.post(`/login`, data,)
             .then((response) => {
                 data.token = response.data;
                 dispatch(SuccessAuth(data));
                 let token = {"status": data.token.status, "userId": data.token.userId, "value": data.token.value};
-                localStorage.token=("token",JSON.stringify(token));
-                localStorage.userId=data.token.userId;
+                localStorage.token = ("token", JSON.stringify(token));
+                localStorage.userId = data.token.userId;
             })
             .catch((error) => {
                 dispatch(Error(error))
@@ -41,7 +43,9 @@ export const logIn = (username, password) => {
 
 export const getServices = (userid) => {
     return dispatch => {
-        axios.get(`/applications/${userid}`)
+        let hd = JSON.parse(localStorage.token).value;
+        console.log(hd);
+        axios.get(`/applications/${userid}`, {headers: {Authorization: hd}})
             .then(response => {
                 dispatch(SuccessActive(response.data));
                 localStorage.services = response.data;
