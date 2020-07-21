@@ -22,11 +22,11 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        const {getServices, username} = this.props;
-        if (username !== null) {
-            getServices(localStorage.username);
+        const {getServices, userId} = this.props;
+        console.log(userId);
+        if (userId!=0 && userId!=undefined) {
+            getServices(1);
         }
-        console.log(localStorage);
     }
 
     render() {
@@ -69,28 +69,30 @@ class Profile extends Component {
 
 const mapStateToProps = store => {
     return {
+        userId:store.userId,
+        token: store.token,
         username: store.username,
         services: store.services
     }
 };
 const mapDispatchToProps = dispatch => ({
-    addNewInstance: () => {
-        dispatch(addNewInstance())
+    addNewInstance: (git,user) => {
+        dispatch(addNewInstance(git,user))
     },
-    getServices: () => {
-        dispatch(getServices())
+    getServices: (userId) => {
+        dispatch(getServices(userId))
     },
-    stopService: () => {
-        dispatch(stopService())
+    stopService: (instanceId) => {
+        dispatch(stopService(instanceId))
     },
-    addCopyOfInstance: () => {
-        dispatch(addCopyOfInstance())
+    addCopyOfInstance: (data) => {
+        dispatch(addCopyOfInstance(data))
     },
-    startService: () => {
-        dispatch(startService())
+    startService: (instanceId) => {
+        dispatch(startService(instanceId))
     },
-    deleteService: () => {
-        dispatch(deleteService())
+    deleteService: (instanceId) => {
+        dispatch(deleteService(instanceId))
     }
 });
 

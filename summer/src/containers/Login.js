@@ -15,7 +15,7 @@ class Login extends Component {
 
     render() {
         const {logIn} = this.props;
-        const {username, password} = this.state;
+        const {username, password, token} = this.state;
         return (
             <div>
                 <div className={'login'}>
@@ -28,7 +28,7 @@ class Login extends Component {
                            onChange={(event) => this.setState({password: event.target.value})}
                            name={'password'}/>
                     <Link className={"log-reg-btn"} onClick={() => logIn(username, password)}
-                          to={`/applications/${username}`}> Next</Link>
+                          to={`/applications`}> Next</Link>
                 </div>
             </div>);
     }
@@ -40,6 +40,7 @@ const mapDispatchToProps = dispatch => ({
 
 const mapStateToProps = store => {
     return {
+        token: store.token,
         username: store.username
     }
 };

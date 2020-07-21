@@ -11,8 +11,9 @@ import {
 
 
 export const logIn = (username, password) => {
-    localStorage.username=username;
-    localStorage.services=[];
+    localStorage.username = username;
+    localStorage.services = [];
+    localStorage.userId=0;
     let data = {
         login: username,
         password: password
@@ -21,8 +22,10 @@ export const logIn = (username, password) => {
         axios.post(`/login`, data)
             .then((response) => {
                 data.token = response.data;
-                localStorage.token=response.data;
-                dispatch(SuccessAuth(data))
+                dispatch(SuccessAuth(data));
+                console.log("KEKOS");
+                console.log(response.data);
+                localStorage.userId=response.data.userId;
             })
             .catch((error) => {
                 dispatch(Error(error))
@@ -30,12 +33,13 @@ export const logIn = (username, password) => {
     };
 };
 
-export const getServices = (username) => {
+export const getServices = (userid) => {
     return dispatch => {
-        axios.get(`/applications/${username}`)
+        axios.get(`/applications/${userid}`)
             .then(response => {
+                console.log(response.data);
                 dispatch(SuccessActive(response.data));
-                localStorage.services=response.data;
+                localStorage.services = response.data;
             })
             .catch(error => {
                 dispatch(Error(error.message))
@@ -113,10 +117,10 @@ export const startService = (instanceId) => {
     }
 };
 
-export const deleteServ=(data)=>{
-    return{
-        type:DELETE_SERVICE,
-        payload:{
+export const deleteServ = (data) => {
+    return {
+        type: DELETE_SERVICE,
+        payload: {
             ...data
         }
     }
@@ -153,7 +157,7 @@ export const stopServ = (data) => {
         }
     }
 };
-export const SuccessAuth = (data, token) => {
+export const SuccessAuth = (data) => {
     return {
         type: SUCCESS_AUTH,
         payload: {

@@ -10,9 +10,14 @@ import {
 
 export const State = {
     username: localStorage.username,
-    services: localStorage.services,
+    services: [],
     error: null,
-    token: localStorage.token
+    token: {
+        value: localStorage.token.value,
+        userId: localStorage.token.userId,
+        status: localStorage.token.status
+    },
+    userId: localStorage.userId
 };
 
 export function reducer(state = State, action) {
@@ -65,17 +70,17 @@ export function reducer(state = State, action) {
             }
         }
         case SUCCESS_AUTH: {
-            console.log(state);
             return {
                 ...state,
                 username: action.payload.login,
-                token: action.payload.token
+                token: action.payload.token,
+                userId: action.payload.token.userId
             }
         }
         case SUCCESS: {
             return {
                 ...state,
-                services: action.payload.services
+                services:  Object.values(action.payload)
             }
         }
         case ERROR: {
