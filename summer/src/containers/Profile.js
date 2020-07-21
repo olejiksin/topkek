@@ -40,7 +40,7 @@ class Profile extends Component {
                     <Link className={'btn'} to='/signUp/'>Registration</Link>
                 </div>
                 <br/>
-                <form className={'newInstanceWin'}>
+                <div className={'newInstanceWin'}>
                     <label>GitHub link </label>
                     <input className={'text-input'} style={{height: '25px', width: '400px', margin: '5px 5px '}}
                            required={true} onChange={(event) => this.setState({github: event.target.value})}
@@ -59,7 +59,7 @@ class Profile extends Component {
                     <button className={'btn'} style={{width: '80%'}}
                             onClick={() => addNewInstance(this.state.github, username)}>Add new app
                     </button>
-                </form>
+                </div>
                 <br/>
                 <Services username={username} services={services} stopService={stopService}
                           addCopyOfInstance={addCopyOfInstance} startService={startService}

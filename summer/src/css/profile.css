@@ -12,6 +12,7 @@
 }
 
 td{
+    overflow: auto;
     width: 4%;
 }
 .table {

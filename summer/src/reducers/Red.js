@@ -16,9 +16,9 @@ export const State = {
         // value:JSON.parse(localStorage.getItem('token')).value,
         // status:JSON.parse(localStorage.getItem('token')).status,
         // userId:JSON.parse(localStorage.getItem('token')).userId
-        value:null,
-        status:null,
-        userId:null
+        value: null,
+        status: null,
+        userId: null
     },
     userId: localStorage.userId
 };
@@ -76,14 +76,19 @@ export function reducer(state = State, action) {
             return {
                 ...state,
                 username: action.payload.login,
-                token:action.payload.token,
+                token: action.payload.token,
                 userId: action.payload.token.userId
             }
         }
         case SUCCESS: {
             return {
                 ...state,
-                services:  Object.values(action.payload)
+                services: Object.values(action.payload),
+                token: {
+                    value: JSON.parse(localStorage.getItem('token')).value,
+                    status: JSON.parse(localStorage.getItem('token')).status,
+                    userId: JSON.parse(localStorage.getItem('token')).userId
+                }
             }
         }
         case ERROR: {
@@ -92,10 +97,8 @@ export function reducer(state = State, action) {
                 error: action.payload.error
             };
         }
-        case LOGOUT:{
-            return{
-
-            }
+        case LOGOUT: {
+            return {}
         }
         default: {
             return state;

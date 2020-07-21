@@ -8,12 +8,13 @@ export default class Services extends Component {
         // if (services) {
         const serv = services.map((service, index) =>
             <tbody key={index}>
-            {service.instance.map((ins, index) =>
+            {service.instance[0] !== undefined ? (service.instance.map((ins, index) =>
                 <tr key={index}>
                     <td>{service.gitUrl}</td>
                     <td>{ins.instanceName}</td>
                     <td>{ins.instanceUrl}</td>
-                    {ins.status==='active'?<td style={{color:'green'}}>{ins.status}</td>:<td style={{color:'darkred'}}>{ins.status}</td>}
+                    {ins.status === 'active' ? <td style={{color: 'green'}}>{ins.status}</td> :
+                        <td style={{color: 'darkred'}}>{ins.status}</td>}
                     <td>
                         <button className={'btn'} onClick={() => addCopyOfInstance(ins)}>Add copy</button>
                     </td>
@@ -33,8 +34,13 @@ export default class Services extends Component {
                         <button className={'btn'} onClick={() => deleteService(ins.instanceId)}>Delete
                         </button>
                     </td>
-                </tr>
-            )}
+                </tr>))
+                :
+                (<tr>
+                    <td>{service.gitUrl}</td>
+                    <td/><td/><td>Runnin</td>
+
+                </tr>)}
             </tbody>);
         return (
             <div>
