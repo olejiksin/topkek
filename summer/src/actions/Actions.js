@@ -39,11 +39,13 @@ export const logout = () => {
     };
 };
 export const deleteApp = (appId) => {
+    console.log(appId);
+    let data={id:appId}
     let hd = JSON.parse(localStorage.token).value;
     return dispatch => {
         axios.delete(`/applications/${appId}`, {headers: {Authorization: hd}})
             .then(() => {
-                dispatch(deletApp(appId))
+                dispatch(delApp(data))
             })
             .catch((er) => {
                 dispatch(Error(er.message))
@@ -179,7 +181,7 @@ export const newInstance = (data) => {
         }
     }
 };
-export const deletApp = (data) => {
+export const delApp = (data) => {
     return {
         type: DELETE_APP,
         payload: {

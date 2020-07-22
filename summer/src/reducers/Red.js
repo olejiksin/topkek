@@ -27,10 +27,12 @@ export function reducer(state = State, action) {
     switch (action.type) {
         case NEW_INSTANCE: {
             console.log(action.payload);
-            console.log(action.payload.id);
             for(let service of state.services){
-                if(service.id===action.payload.id){
-                    service.instance.push(action.payload.instance);
+                console.log(service);
+                if(service.id==action.payload.id){
+                    // service.instance.push(action.payload.instance);
+                    console.log(service);
+                    document.location.reload();
                 }
             }
             return{
@@ -104,12 +106,14 @@ export function reducer(state = State, action) {
             }
         }
         case DELETE_APP: {
+            console.log(action.payload);
             let arr = state.services;
             for (let i = 0; i < state.services.length; i++) {
-                if (state.services[i].id === action.payload) {
+                if (state.services[i].id == action.payload.id) {
                     arr.splice(i, 1);
                     state.services = arr;
                     localStorage.services = arr;
+                    document.location.reload();
                 }
             }
             return {

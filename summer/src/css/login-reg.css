@@ -20,7 +20,7 @@ body {
 .reg {
     padding-left: 15px;
     color: antiquewhite;
-    display: block;
+    display: none;
     position: fixed;
     width: 340px;
     height: 300px;

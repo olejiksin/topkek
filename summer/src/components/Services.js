@@ -4,7 +4,6 @@ import React from "react";
 export default class Services extends Component {
     render() {
         const {stopService, addCopyOfInstance, startService, deleteService, services, deleteApp} = this.props;
-        console.log(services);
         // if (services) {
         const serv = services.map((service, index) =>
             <tbody key={index}>
@@ -31,7 +30,7 @@ export default class Services extends Component {
                                 </button>
                             </td>}
                         <td>
-                            <button className={'btn'} onClick={() => deleteService(ins.instanceId)}>Delete instance
+                            <button className={'btn'} style={{height:'50px'}} onClick={() => deleteService(ins.instanceId)}>Delete instance
                             </button>
                         </td>
                         <td>
