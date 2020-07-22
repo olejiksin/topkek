@@ -30,7 +30,7 @@ export default class SignUp extends Component {
 
     render() {
         return (
-            <div className={'reg'}>
+            <div className={'login'}>
                 <label className={'log-label'}>Username</label>
                 <br/>
                 <input className={'text-input'} type={'text'} name={"username"} id={"username"}
@@ -38,7 +38,7 @@ export default class SignUp extends Component {
                 <label className={'log-label'}>Password</label>
                 <br/>
                 <input className={'text-input'} type={'password'} name={"password"} id={"password"}
-                       onChange={(event) => this.setState({password: event.target.value})}/>                
+                       onChange={(event) => this.setState({password: event.target.value})}/>
                 <Link className={"log-reg-btn"} onClick={() => {
                     this.submit()
                 }} to={"/login/"}>Next</Link>

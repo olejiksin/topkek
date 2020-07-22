@@ -11,7 +11,10 @@
     border: 2px solid #f5f7f8;
 }
 
-td{
+.btn-add{
+    float: right;
+}
+.td-td{
     overflow: auto;
     width: 4%;
 }
@@ -27,6 +30,7 @@ td{
     border-radius: 5px;
     border: 2px solid #f5f7f8;
 }
+
 
 .btn {
     padding: 10px;

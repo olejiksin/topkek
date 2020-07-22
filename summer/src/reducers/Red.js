@@ -1,7 +1,7 @@
 import {
     ADD_COPY_INSTANCE,
-    ADD_INSTANCE, DELETE_SERVICE,
-    ERROR, LOGOUT,
+    ADD_INSTANCE, DELETE_APP, DELETE_SERVICE,
+    ERROR, LOGOUT, NEW_INSTANCE,
     START_SERVICE,
     STOP_INSTANCE,
     SUCCESS,
@@ -25,6 +25,18 @@ export const State = {
 
 export function reducer(state = State, action) {
     switch (action.type) {
+        case NEW_INSTANCE: {
+            console.log(action.payload);
+            console.log(action.payload.id);
+            for(let service of state.services){
+                if(service.id===action.payload.id){
+                    service.instance.push(action.payload.instance);
+                }
+            }
+            return{
+                    ...state,
+                }
+        }
         case ADD_COPY_INSTANCE: {
             return {
                 ...state,
@@ -89,6 +101,19 @@ export function reducer(state = State, action) {
                     status: JSON.parse(localStorage.getItem('token')).status,
                     userId: JSON.parse(localStorage.getItem('token')).userId
                 }
+            }
+        }
+        case DELETE_APP: {
+            let arr = state.services;
+            for (let i = 0; i < state.services.length; i++) {
+                if (state.services[i].id === action.payload) {
+                    arr.splice(i, 1);
+                    state.services = arr;
+                    localStorage.services = arr;
+                }
+            }
+            return {
+                ...state
             }
         }
         case ERROR: {

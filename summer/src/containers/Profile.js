@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import '../css/profile.css';
 import {
     addCopyOfInstance,
-    addNewInstance,
+    addNewApp, addOneInstance, deleteApp,
     deleteService,
     getServices, logout,
     startService,
@@ -17,7 +17,10 @@ class Profile extends Component {
         super(props);
         this.state = {
             type: null,
-            github: null
+            github: null,
+            gitInstance: null,
+            instanceName: null,
+            instancePath: null
         }
     }
 
@@ -32,7 +35,9 @@ class Profile extends Component {
     }
 
     render() {
-        const {stopService, username, addNewInstance, services, addCopyOfInstance, startService, deleteService, logout} = this.props;
+        const {stopService, username, addNewApp, services, addCopyOfInstance, startService, deleteService, logout, deleteApp, addOneInstance} = this.props;
+        const {instanceName, gitInstance, instancePath} = this.state;
+        console.log(this.state);
         return (
             <div>
                 <div>
@@ -46,24 +51,38 @@ class Profile extends Component {
                            required={true} onChange={(event) => this.setState({github: event.target.value})}
                            type={"text"}
                            name={'project-link'} id={'project-link'}/>
-                    {/*<label>Select microservice type</label>*/}
-                    {/*<select required={true} size={"1"} name={"type"} id={"type"}*/}
-                    {/*onChange={(event) => this.setState({type: event.target.value})}>*/}
-                    {/*<option value={"Java"}>Java</option>*/}
-                    {/*<option value={"Javascript"}>Javascript</option>*/}
-                    {/*<option value={"Postgres"}>Postgres</option>*/}
-                    {/*<option value={"Rabbit"}>Rabbit</option>*/}
-                    {/*<option value={"Redis"}>Redis</option>*/}
-                    {/*</select>*/}
-                    {/*<br/>*/}
                     <button className={'btn'} style={{width: '80%'}}
-                            onClick={() => addNewInstance(this.state.github, username)}>Add new app
+                            onClick={() => addNewApp(this.state.github, username)}>Add new app
+                    </button>
+                </div>
+                <div className={'reg'} id={'new'}>
+                    <label>GitUrl</label>
+                    < input className={'text-input'} required={true} type={'text'} name={'instance-link'}
+                            onChange={(event) =>
+                                this.setState({gitInstance: event.target.value})
+                            }/>
+                    <label>Name for instance</label>
+                    < input className={'text-input'} required={true} type={'text'} name={'instance-name'}
+                            onChange={(event) =>
+                                this.setState({instanceName: event.target.value})
+                            }/>
+                    <label>Instance mainpath(host:port/(mainpath))</label>
+                    < input className={'text-input'} required={true} type={'text'} name={'instance-url'}
+                            onChange={(event) =>
+                                this.setState({instancePath: event.target.value})
+                            }/>
+                    <button className={'btn'} style={{width: '65px'}}
+                            onClick={() => document.getElementById('new').style.display = 'none'
+                            }>Close
+                    </button>
+                    <button className={'btn btn-add'} onClick={() =>
+                        addOneInstance(instanceName, gitInstance, instancePath)}>Add
                     </button>
                 </div>
                 <br/>
                 <Services username={username} services={services} stopService={stopService}
                           addCopyOfInstance={addCopyOfInstance} startService={startService}
-                          deleteService={deleteService}/>
+                          deleteService={deleteService} deleteApp={deleteApp}/>
             </div>
         )
     }
@@ -78,11 +97,17 @@ const mapStateToProps = store => {
     }
 };
 const mapDispatchToProps = dispatch => ({
+    addOneInstance: (name, git, path) => {
+        dispatch(addOneInstance(name, git, path))
+    },
+    deleteApp: (appId) => {
+        dispatch(deleteApp(appId))
+    },
     logout: () => {
         dispatch(logout())
     },
-    addNewInstance: (git, user) => {
-        dispatch(addNewInstance(git, user))
+    addNewApp: (git, user) => {
+        dispatch(addNewApp(git, user))
     },
     getServices: (userId) => {
         dispatch(getServices(userId))

@@ -7,3 +7,5 @@ export const ADD_INSTANCE='ADD_INSTANCE';
 export const LOGOUT='LOGOUT';
 export const START_SERVICE='START_SERVICE';
 export const DELETE_SERVICE='DELETE_SERVICE';
+export const DELETE_APP='DELETE_APP';
+export const NEW_INSTANCE='NEW_INSTANCE';
