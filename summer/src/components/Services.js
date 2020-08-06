@@ -30,7 +30,8 @@ export default class Services extends Component {
                                 </button>
                             </td>}
                         <td>
-                            <button className={'btn'} style={{height:'50px'}} onClick={() => deleteService(ins.instanceId)}>Delete instance
+                            <button className={'btn'} style={{height: '50px'}}
+                                    onClick={() => deleteService(ins.instanceId)}>Delete instance
                             </button>
                         </td>
                         <td>
@@ -80,6 +81,26 @@ export default class Services extends Component {
                         <td>
                         </td>
                         <td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button className={'btn-stop btn'}
+                            >Stop instance
+                            </button>
+                        </td>
+                        <td>
+                            < button className={'btn btn-start'}
+                            >Start instance
+                            </button>
+                        </td>
+                        <td>
+                            <button className={'btn'} style={{height: '50px'}}>Delete instance
+                            </button>
+                        </td>
+                        <td>
+                            <button className={'btn'}>Delete app
+                            </button>
                         </td>
                     </tr>
                     </thead>

@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import Services from '../components/Services.js';
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import '../css/profile.css';
+import PropTypes from 'prop-types';
+
 import {
     addCopyOfInstance,
     addNewApp, addOneInstance, deleteApp,
@@ -25,29 +26,28 @@ class Profile extends Component {
     }
 
     componentDidMount() {
-        let time = setTimeout(() => {
+        setTimeout(() => {
             const {getServices, userId} = this.props;
-            if (userId !== 0 && userId !== null && userId !== undefined) {
+            if (userId !== 0 && userId !== null && userId !== undefined && JSON.parse(localStorage.token)!==null) {
                 getServices(userId);
             }
         }, 2000)
-
     }
 
     render() {
+        const EMPTY=[];
         const {stopService, username, addNewApp, services, addCopyOfInstance, startService, deleteService, logout, deleteApp, addOneInstance} = this.props;
         const {instanceName, gitInstance, instancePath} = this.state;
-        console.log(this.state);
         return (
             <div>
                 <div>
-                    <Link className={'btn'} to='/login/' onClick={() => logout()}>Exit</Link>
+                    <Link className={'btn'}  to='/login/' onClick={() => logout()}>Exit</Link>
                     <Link className={'btn'} to='/signUp/'>Registration</Link>
                 </div>
                 <br/>
                 <div className={'newInstanceWin'}>
                     <label>GitHub link </label>
-                    <input className={'text-input'} style={{height: '25px', width: '400px', margin: '5px 5px '}}
+                    <input className={'text-input'} style={{height: '25px', width: '80%', margin: '5px 5px '}}
                            required={true} onChange={(event) => this.setState({github: event.target.value})}
                            type={"text"}
                            name={'project-link'} id={'project-link'}/>
@@ -80,13 +80,18 @@ class Profile extends Component {
                     </button>
                 </div>
                 <br/>
-                <Services username={username} services={services} stopService={stopService}
+                <Services username={username} services={services || EMPTY} stopService={stopService}
                           addCopyOfInstance={addCopyOfInstance} startService={startService}
                           deleteService={deleteService} deleteApp={deleteApp}/>
             </div>
         )
     }
 }
+
+Profile.propsType={
+  username: PropTypes.string.isRequired,
+  userId: PropTypes.number.isRequired
+};
 
 const mapStateToProps = store => {
     return {

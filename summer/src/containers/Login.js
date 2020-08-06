@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {logIn} from "../actions/Actions";
+import PropTypes from 'prop-types';
 
 
 class Login extends Component {
@@ -12,7 +13,6 @@ class Login extends Component {
             password: null
         }
     }
-
 
     render() {
         const {logIn} = this.props;
@@ -28,23 +28,22 @@ class Login extends Component {
                     <input className={'text-input'} type={"password"}
                            onChange={(event) => this.setState({password: event.target.value})}
                            name={'password'}/>
-                    <Link className={"log-reg-btn"} onClick={() => logIn(username, password)}
+                    <Link className={"log-reg-btn"} style={{float: 'right'}} onClick={() => logIn(username, password)}
                           to={`/applications`}> Next</Link>
                 </div>
             </div>);
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    logIn: (username, password) => dispatch(logIn(username, password)),
+Login.propsType = {
+    logIn: PropTypes.func
+};
+const mapDispatchToProps = (dispatch) => ({
+    logIn:(user,pass)=>dispatch(logIn(user,pass))
 });
-
-const mapStateToProps = store => {
+const mapStateToProps = (store) => {
     return {
-        token: store.token,
         username: store.username
     }
 };
-
-
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

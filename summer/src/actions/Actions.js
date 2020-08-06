@@ -18,7 +18,6 @@ export const addOneInstance = (name, git, path) => {
         userId: localStorage.userId
     };
     document.getElementById('new').style.display = 'none';
-    console.log(data);
     return dispatch => {
         axios.post(`/applications/new/${data.userId}`, data, {headers: {Authorization: JSON.parse(localStorage.token).value}})
             .then((response) => {
@@ -30,20 +29,20 @@ export const addOneInstance = (name, git, path) => {
             });
     };
 };
+
 export const logout = () => {
     // localStorage.userId = null;
     // localStorage.username = null;
     // localStorage.token = null;
+    localStorage.clear();
     return dispatch => {
         dispatch(logOut);
     };
 };
 export const deleteApp = (appId) => {
-    console.log(appId);
-    let data={id:appId}
-    let hd = JSON.parse(localStorage.token).value;
+    let data={id:appId};
     return dispatch => {
-        axios.delete(`/applications/${appId}`, {headers: {Authorization: hd}})
+        axios.delete(`/applications/${appId}`, {headers: {Authorization: JSON.parse(localStorage.token).value}})
             .then(() => {
                 dispatch(delApp(data))
             })
@@ -56,6 +55,7 @@ export const deleteApp = (appId) => {
 export const logIn = (username, password) => {
     localStorage.username = username;
     localStorage.services = [];
+    console.log(localStorage);
     let data = {
         login: username,
         password: password
@@ -68,6 +68,7 @@ export const logIn = (username, password) => {
                 let token = {"status": data.token.status, "userId": data.token.userId, "value": data.token.value};
                 localStorage.token = ("token", JSON.stringify(token));
                 localStorage.userId = data.token.userId;
+
             })
             .catch((error) => {
                 dispatch(Error(error))
@@ -77,23 +78,22 @@ export const logIn = (username, password) => {
 
 export const getServices = (userid) => {
     return dispatch => {
-        let hd = JSON.parse(localStorage.token).value;
-        axios.get(`/applications/${userid}`, {headers: {Authorization: hd}})
-            .then(response => {
-                dispatch(SuccessActive(response.data));
-                localStorage.services = response.data;
-                console.log(localStorage);
-            })
-            .catch(error => {
-                dispatch(Error(error.message))
-            });
+        if(JSON.parse(localStorage.token)!==null) {
+            axios.get(`/applications/${userid}`, {headers: {Authorization: JSON.parse(localStorage.token).value}})
+                .then(response => {
+                    dispatch(SuccessActive(response.data));
+                    localStorage.services = response.data;
+                })
+                .catch(error => {
+                    dispatch(Error(error.message))
+                });
+        }
     };
 };
 
 export const addCopyOfInstance = (data) => {
-    let hd = JSON.parse(localStorage.token).value;
     return dispatch => {
-        axios.post(`/applications`, data, {headers: {Authorization: hd}})
+        axios.post(`/applications`, data, {headers: {Authorization: JSON.parse(localStorage.token).value}})
             .then((response) => {
                 dispatch(copyOfInstance(response.data))
             })
@@ -118,7 +118,6 @@ export const addNewApp = (git, username) => {
                 setTimeout(() => {
                     axios.put(`/applications/${id}`, null, {headers: {Authorization: hd}})
                         .then((response) => {
-                            // dispatch(newApp(response.data));
                         })
                         .catch((error) => dispatch(Error(error.message)));
                 }, 1000);
@@ -129,12 +128,11 @@ export const addNewApp = (git, username) => {
     };
 };
 export const deleteService = (instanceId) => {
-    let hd = JSON.parse(localStorage.token).value;
     let data = {
         instanceId: instanceId
-    }
+    };
     return dispatch => {
-        axios.delete(`/applications/${instanceId}`, {headers: {Authorization: hd}})
+        axios.delete(`/applications/${instanceId}`, {headers: {Authorization: JSON.parse(localStorage.token).value}})
             .then(() => {
                 dispatch(deleteServ(data))
             })
@@ -144,12 +142,11 @@ export const deleteService = (instanceId) => {
     };
 };
 export const stopService = (instanceId) => {
-    let hd = JSON.parse(localStorage.token).value;
     let data = {
         instanceId: instanceId
     };
     return dispatch => {
-        axios.put(`/applications/stop/${instanceId}`, null, {headers: {Authorization: hd}})
+        axios.put(`/applications/stop/${instanceId}`, null, {headers: {Authorization: JSON.parse(localStorage.token).value}})
             .then(() => {
                 dispatch(stopServ(data))
             })
@@ -159,12 +156,11 @@ export const stopService = (instanceId) => {
     };
 };
 export const startService = (instanceId) => {
-    let hd = JSON.parse(localStorage.token).value;
     let data = {
         instanceId: instanceId
     };
     return dispatch => {
-        axios.put(`/applications/start/${instanceId}`, null, {headers: {Authorization: hd}})
+        axios.put(`/applications/start/${instanceId}`, null, {headers: {Authorization: JSON.parse(localStorage.token).value}})
             .then(() => {
                 dispatch(startServ(data))
             })
