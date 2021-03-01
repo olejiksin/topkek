@@ -29,7 +29,7 @@ public class SearchApplication implements CommandLineRunner {
                 i++;
                 line = bf.readLine();
             }
-            FileWriter fl=new FileWriter("index.txt");
+            FileWriter fl = new FileWriter("index.txt");
             for (int k = 0; k < 100; k++) {
                 System.out.println(sites[k]);
                 Document doc = Jsoup.connect(sites[k]).get();
@@ -41,8 +41,13 @@ public class SearchApplication implements CommandLineRunner {
                 fileWriter.write(doc.body().text());
                 fileWriter.flush();
                 fileWriter.close();
-                fl.write(k + " " + sites[k]+"\n");
+                fl.write(k + " " + sites[k] + "\n");
                 fl.flush();
+                System.out.println(doc.body().text());
+                for (char c : doc.body().text().toCharArray()) {
+
+                }
+                System.out.println(" kjjK j".toCharArray()[0]);
             }
             fl.close();
         } catch (IOException e) {
