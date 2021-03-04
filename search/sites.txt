@@ -1,6 +1,5 @@
 https://www.yandex.ru
 https://www.google.com
-https://www.pikabu.ru
 https://cinemaentertainment.ru/
 https://students.kpfu.ru
 https://zen.yandex.ru
@@ -72,7 +71,7 @@ https://www.cyberforum.ru
 https://www.aeroflot.ru
 https://www.vesti.ru
 https://www.skyeng.ru
-https://www.okko.tv
+https://vz.ru/
 https://www.culture.ru
 https://www.vokrug.tv/
 https://www.sports.ru
@@ -92,9 +91,10 @@ https://www.msu.ru
 https://www.kinoafisha.info
 https://www.megafon.ru
 https://www.ctc.ru
-https://rosstat.gov.ru/
+https://www.ucoz.ru/
 https://www.gdzputina.ru
 https://www.wikireading.ru
 https://www.forbes.ru/
 https://www.russianfood.com/
 https://www.rkomi.ru
+https://www.pikabu.ru
