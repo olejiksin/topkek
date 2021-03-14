@@ -1,78 +1,92 @@
 package s.e.search;
 
+
+import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.TokenStream;
+import org.apache.lucene.analysis.en.EnglishAnalyzer;
+import org.apache.lucene.analysis.ru.RussianAnalyzer;
+import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
+
 import java.io.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class InfoSTask2 {
 
-    public static void rek(int x, int y, int step, int[][] matrix) {
-
-        int dx[] = {-1, 1, -2, -2, 2, 2, 1, -1};
-        int dy[] = {2, 2, 1, -1, 1, -1, -2, -2};
-        int xx[] = {-1, -1, -1, -1, -1, -1, -1, -1};
-        int yy[] = {-1, -1, -1, -1, -1, -1, -1, -1};
-        matrix[x][y] = step;
-        for (int i = 0; i < 8; i++) {
-            int x1 = x + dx[i];
-            int y1 = y + dy[i];
-
-            if ((x1 >= 0) && (y1 >= 0) && (x1 < 10) && (y1 < 14) && (matrix[x1][y1] == -1)) {
-                matrix[x1][y1] = step + 1;
-                xx[i] = x1;
-                yy[i] = y1;
+    public static void main(String[] args) throws IOException {
+        File file = new File("tokensAndLemmas.txt");
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-        for (int i = 0; i < 8; i++) {
-            if (xx[i] != -1) {
-                rek(xx[i], yy[i], step + 1, matrix);
+        File file1 = new File("lemmas.txt");
+        if (!file.exists()) {
+            try {
+                file.createNewFile();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
-    }
+        FileWriter writer = null;
+        FileWriter writer1 = null;
+        try {
+            writer = new FileWriter(file);
+            writer1 = new FileWriter(file1);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
-    public static void main(String[] args) {
-        int[][] matrix = new int[10][14];
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 14; j++) {
-                matrix[i][j] = -1;
-            }
-        }
-//        matrix[2][0] = 0;
-        rek(0, 0, 0, matrix);
-        for (int i = 0; i < 10; i++) {
-            for (int j = 0; j < 14; j++) {
-                if (matrix[i][j] <= 9) System.out.print(" 0" + matrix[i][j] + " ");
-                else {
-                    System.out.print(" " + matrix[i][j] + " ");
+        Map<String, HashSet<String>> mapSet = new HashMap<>();
+        try {
+            for (int i = 0; i < 100; i++) {
+                Analyzer analyzer = null;
+                String[] wordsFromFile = Files.lines(Paths.get("выкачка/выкачка" + i + ".txt")).findFirst().get().split(" ");
+                if (wordsFromFile[0].toLowerCase().charAt(0) >= 1072 || wordsFromFile[0].toLowerCase().charAt(0) <= 1103
+                        || wordsFromFile[0].toLowerCase().charAt(0) == 'ё') {
+                    analyzer = new RussianAnalyzer();
+                } else {
+                    analyzer = new EnglishAnalyzer();
+                }
+                for (String s : wordsFromFile) {
+                    String word = s.toLowerCase();
+                    TokenStream stream = analyzer.tokenStream("field", word);
+                    stream.reset();
+                    while (stream.incrementToken()) {
+                        String lemma = stream.getAttribute(CharTermAttribute.class).toString();
+                        if (mapSet.get(lemma)==null) {
+                            HashSet<String> set = new HashSet<>();
+                            set.add(word);
+                            mapSet.put(lemma, set);
+                        }
+                        else{
+                            HashSet<String> set;
+                            set = mapSet.get(lemma);
+                            set.add(word);
+                            mapSet.put(lemma, set);
+                        }
+                    }
+                    stream.end();
+                    stream.close();
                 }
             }
-            System.out.println();
+            for (String key : mapSet.keySet()) {
+                StringBuilder allTokens = new StringBuilder(key + "");
+                for (String token : mapSet.get(key)) {
+                    allTokens.append(" ").append(token);
+                }
+                writer.write(allTokens + "\n");
+                writer.flush();
+                writer1.write(key + "\n");
+                writer1.flush();
+            }
+            writer.close();
+            writer1.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-//        FileReader fileReader;
-//        File file = new File("tokens.txt");
-//        if (!file.exists()) {
-//            try {
-//                file.createNewFile();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        File file1 = new File("lemmas.txt");
-//        if (!file.exists()) {
-//            try {
-//                file.createNewFile();
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//        try {
-//            FileWriter writer = new FileWriter("tokens.txt");
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//        for (int i = 0; i < 100; i++) {
-//            fileReader = new FileReader("выкачка/выкачка" + i);
-//        }
     }
 }

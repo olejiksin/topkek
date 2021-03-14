@@ -31,7 +31,7 @@ public class SearchApplication implements CommandLineRunner {
                 line = bf.readLine();
             }
             FileWriter fl = new FileWriter("index.txt");
-            for (int k = 73; k < 100; k++) {
+            for (int k = 72; k < 74; k++) {
                 System.out.println(sites[k]);
                 Document doc = Jsoup.connect(sites[k]).get();
                 String predResult = doc.body().text();
