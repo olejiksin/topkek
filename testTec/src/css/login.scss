@@ -1,0 +1,60 @@
+
+body {
+  font-size: 14px;
+  padding: 15px 20px;
+}
+
+.loginDiv {
+  min-width: 240px;
+  min-height: 200px;
+  position: relative;
+  width: 10%;
+  height: 200px;
+  margin: 15% auto;
+}
+
+.login-button {
+  cursor: pointer;
+  margin: 0 0;
+  width: 100%;
+  height: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  border: 0;
+  border-radius: 5px;
+  background-color: cornflowerblue;
+}
+
+.login-input {
+  width: 98%;
+  padding: 5px 0;
+  height: 30px;
+  line-height: 40px;
+  text-indent: 10px;
+  margin: 0 0 20px 0;
+  border: 2px solid gainsboro;
+  border-radius: 5px;
+  font-size: 16px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, .1);
+
+  &::placeholder {
+    color: gray;
+    opacity: 0.5;
+  }
+}
+
+.password-control {
+  cursor: pointer;
+  position: absolute;
+  top: 39%;
+  right: 6px;
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  background: url('../images/view.svg') 0 0 no-repeat;
+
+  &.view {
+    background: url(../images/no-view.svg) 0 0 no-repeat;
+  }
+}
