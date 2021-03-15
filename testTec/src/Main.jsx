@@ -56,7 +56,10 @@ export const Main = () => {
     };
 
     let prev = -1;
+    let cur=-1;
+
     const closeModal = () => {
+        cur=-1;
         let k = document.getElementsByClassName('submenu-modal')[0].children[0].children;
         for (let i = 0; i < 3; i++) {
             if (k[i].classList.value === 'li-selected') {
@@ -69,11 +72,17 @@ export const Main = () => {
 
     let clicked = false;
     const showHideSubmenu = (e) => {
-        console.log(prev);
         let k = document.getElementsByClassName('submenu-modal')[0].children[0].children;
-        if (prev !== -1) {
+        for (let i = 0; i < 3; i++) {
+            if (k[i].classList.value === 'li-selected') {
+                cur=i;
+            }
+        }
+        if (prev !== -1 && prev!==cur) {
             k[prev].classList.value = 'li';
         }
+
+        console.log('pr'+prev);
         if (e.target.id === 'p-sub') {
             if (e.type !== 'mouseleave') {
                 if (e.target !== null) {
