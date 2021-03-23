@@ -99,7 +99,8 @@ export const List = (props) => {
                 <div className="right-flex" style={{'margin-right':'25px'}}>
                     <div className="list-div-elem" style={{'opacity': '0.4'}}>Последние
                         изменение: {parDate(elem.lastUpdatedAt)}</div>
-                    <div className="list-div-elem sub" onMouseLeave={(e) => {
+                    <div className="list-div-elem sub"
+                            onMouseLeave={(e) => {
                         showHideSubmenu(e)
                     }} onClick={(e) => {
                         showHideSubmenu(e)
