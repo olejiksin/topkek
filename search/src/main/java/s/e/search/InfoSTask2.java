@@ -41,6 +41,7 @@ public class InfoSTask2 {
         }
 
         Map<String, HashSet<String>> mapSet = new HashMap<>();
+
         try {
             for (int i = 0; i < 100; i++) {
                 Analyzer analyzer = null;
@@ -55,33 +56,32 @@ public class InfoSTask2 {
                     String word = s.toLowerCase();
                     TokenStream stream = analyzer.tokenStream("field", word);
                     stream.reset();
-                    while (stream.incrementToken()) {
                         String lemma = stream.getAttribute(CharTermAttribute.class).toString();
-                        if (mapSet.get(lemma)==null) {
-                            HashSet<String> set = new HashSet<>();
-                            set.add(word);
-                            mapSet.put(lemma, set);
-                        }
-                        else{
-                            HashSet<String> set;
-                            set = mapSet.get(lemma);
-                            set.add(word);
-                            mapSet.put(lemma, set);
-                        }
-                    }
+                            if (mapSet.get(lemma) == null) {
+                                HashSet<String> set = new HashSet<>();
+                                set.add(word);
+                                mapSet.put(lemma, set);
+                            } else {
+                                HashSet<String> set;
+                                set = mapSet.get(lemma);
+                                set.add(word);
+                                mapSet.put(lemma, set);
+                            }
                     stream.end();
                     stream.close();
                 }
             }
             for (String key : mapSet.keySet()) {
-                StringBuilder allTokens = new StringBuilder(key + "");
-                for (String token : mapSet.get(key)) {
-                    allTokens.append(" ").append(token);
+                if (key.length() > 2) {
+                    StringBuilder allTokens = new StringBuilder(key + "");
+                    for (String token : mapSet.get(key)) {
+                        allTokens.append(" ").append(token);
+                    }
+                    writer.write(allTokens + "\n");
+                    writer.flush();
+                    writer1.write(key + "\n");
+                    writer1.flush();
                 }
-                writer.write(allTokens + "\n");
-                writer.flush();
-                writer1.write(key + "\n");
-                writer1.flush();
             }
             writer.close();
             writer1.close();
