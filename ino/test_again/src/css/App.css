@@ -1,113 +1,113 @@
-.App {
-    text-align: center;
-}
+/*.App {*/
+/*    text-align: center;*/
+/*}*/
 
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
+/*.App-logo {*/
+/*    height: 40vmin;*/
+/*    pointer-events: none;*/
+/*}*/
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
-}
+/*@media (prefers-reduced-motion: no-preference) {*/
+/*    .App-logo {*/
+/*        animation: App-logo-spin infinite 20s linear;*/
+/*    }*/
+/*}*/
 
-.App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-}
+/*.App-header {*/
+/*    background-color: #282c34;*/
+/*    min-height: 100vh;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    font-size: calc(10px + 2vmin);*/
+/*    color: white;*/
+/*}*/
 
-.App-link {
-    color: #61dafb;
-}
+/*.App-link {*/
+/*    color: #61dafb;*/
+/*}*/
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
+/*@keyframes App-logo-spin {*/
+/*    from {*/
+/*        transform: rotate(0deg);*/
+/*    }*/
+/*    to {*/
+/*        transform: rotate(360deg);*/
+/*    }*/
+/*}*/
 
-h1 {
-    position: absolute;
-    left: 42%;
-}
+/*h1 {*/
+/*    position: absolute;*/
+/*    left: 42%;*/
+/*}*/
 
-h4 {
-    top: 10%;
-    position: absolute;
-    left: 36%;
-}
+/*h4 {*/
+/*    top: 10%;*/
+/*    position: absolute;*/
+/*    left: 36%;*/
+/*}*/
 
-.box {
-    top: 20%;
-    left: 5%;
-    width: 90%;
-    position: absolute;
-    display: flex;
-    flex-direction: row;
-    flex: 1 1 auto;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
+/*.box {*/
+/*    top: 20%;*/
+/*    left: 5%;*/
+/*    width: 90%;*/
+/*    position: absolute;*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    flex: 1 1 auto;*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: space-around;*/
+/*}*/
 
-.cat-box {
-    display: flex;
-    flex-direction: column;
-}
+/*.cat-box {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*}*/
 
-.cat-p {
-    margin: 0 auto;
-    width: 60px;
-    text-align: center;
-    background-color: #61dafb;
-    font-size: 23px;
-    top: 5%;
-    position: relative;
-    cursor: pointer;
-}
+/*.cat-p {*/
+/*    margin: 0 auto;*/
+/*    width: 60px;*/
+/*    text-align: center;*/
+/*    background-color: #61dafb;*/
+/*    font-size: 23px;*/
+/*    top: 5%;*/
+/*    position: relative;*/
+/*    cursor: pointer;*/
+/*}*/
 
-.cat-img {
-    position: relative;
-    cursor: pointer;
-    width: 400px;
-    height: 350px;
-}
-.cat-img-top{
-    /*position: relative;*/
-    margin-left: 100%;
-    width: 400px;
-    height: 350px;
-}
-.p-top{
-    position: absolute;
-    right: -500px;
-}
+/*.cat-img {*/
+/*    position: relative;*/
+/*    cursor: pointer;*/
+/*    width: 400px;*/
+/*    height: 350px;*/
+/*}*/
+/*.cat-img-top{*/
+/*    !*position: relative;*!*/
+/*    margin-left: 100%;*/
+/*    width: 400px;*/
+/*    height: 350px;*/
+/*}*/
+/*.p-top{*/
+/*    position: absolute;*/
+/*    right: -500px;*/
+/*}*/
 
-.top {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 auto;
-    flex-wrap: wrap;
-    position: absolute;
-    justify-content: space-around;
-}
+/*.top {*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    flex: 1 1 auto;*/
+/*    flex-wrap: wrap;*/
+/*    position: absolute;*/
+/*    justify-content: space-around;*/
+/*}*/
 
-.top-div {
-    margin-top: 60px;
-    display: flex;
-    position: relative;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-}
+/*.top-div {*/
+/*    margin-top: 60px;*/
+/*    display: flex;*/
+/*    position: relative;*/
+/*    flex-wrap: wrap;*/
+/*    flex-direction: column;*/
+/*    justify-content: center;*/
+/*}*/
 

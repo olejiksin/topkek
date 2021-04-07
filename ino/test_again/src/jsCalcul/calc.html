@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calculator</title>
+    <style>
+        #input {
+            top:-5px;
+            position: relative;
+            left:-5px;
+            border: 5px solid ;
+            width: 99%;
+            height: 45px;
+            font-size: 24px;
+        }
+
+        #calc {
+            border: 5px solid black;
+            position: absolute;
+            left: 40%;
+            width: 360px;
+            display: inline-block;
+            background-color: #97c9ee;
+        }
+
+        .btn {
+            font-size: 24px;
+            height: 80px;
+            width: 80px;
+            line-height: 80px;
+            cursor: pointer;
+            display: inline-block;
+            text-align: center;
+            border: 5px solid gray;
+            border-radius: 4px;
+            color: black;
+            background: white;
+        }
+
+        .btn:hover {
+            background: #97c9ee;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+<div id="calc">
+    <input type="text" id="input" value='0'  readonly/>
+</div>
+</body>
+<script src="calculator.js"></script>
+</html>
