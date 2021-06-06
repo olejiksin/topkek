@@ -1,41 +1,56 @@
 import './css/calc.css';
+import React from "react";
+
+const {useState} = React;
 
 const Calc = () => {
+
+    const [inputArea, setInputArea] = useState('');
 
     const buttons = [
         '1', '2', '3', '+',
         '4', '5', '6', '-',
         '7', '8', '9', '/',
         '0', '=', '.', '*',
-        '<=', 'C','(',')'];
+        '<=', 'C', '(', ')'];
 
-    const onClickFuncc = (e) => {
-        let inputArea=document.getElementById('input');
-        if (e.target.innerHTML === 'C') {
-            inputArea.value = '0';
-        } else if (e.target.innerText === '<=') {
-            if (inputArea.value.length > 1 && inputArea.value !== '0') {
-                inputArea.value = inputArea.value.slice(0, inputArea.value.length - 1);
+    const onClickFuncc = (innerText) => {
+        switch (innerText) {
+            case 'C': {
+                setInputArea('');
+                break;
             }
-        } else if (e.target.innerHTML === '=') {
-            inputArea.value = eval(inputArea.value).toString();
-        } else if (inputArea.value === '0') {
-            inputArea.value = e.target.innerText;
-        } else {
-            inputArea.value += e.target.innerText;
+            case '<=': {
+                if (inputArea.length >= 1) {
+                    setInputArea(inputArea.slice(0, inputArea.length - 1));
+                }
+                break;
+            }
+            case '=': {
+                try {
+                    if (!isNaN(eval(inputArea)) && eval(inputArea) !== Infinity) {
+                        setInputArea(eval(inputArea).toString());
+                    }
+                } catch {
+                    alert('Что-то не то ввели');
+                }
+                break;
+            }
+            default:
+                setInputArea(inputArea + innerText);
         }
     }
 
     const buttonList = buttons.map((button, index) => {
         return (
-            <div className="btn" onClick={(e) =>onClickFuncc(e)}>
+            <div className="btn" onClick={(e) => onClickFuncc(e.target.innerText)}>
                 {button}
             </div>)
     });
 
     return (
         <div id="calc">
-            <input type="text" id="input" value='0' readOnly/>
+            <input type="text" id="input" value={inputArea} maxLength={26} readOnly/>
             {buttonList}
         </div>
     );

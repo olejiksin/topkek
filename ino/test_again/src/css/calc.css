@@ -9,11 +9,11 @@
 }
 
 #calc {
+    margin: 0 auto;
     border: 5px solid black;
-    position: absolute;
-    left: 40%;
+    position: relative;
     width: 360px;
-    display: inline-block;
+    display: block;
     background-color: #97c9ee;
 }
 
