@@ -31,7 +31,7 @@
         <link rel="icon" href="css/img/<%= Model.documentType %>.ico" type="image/x-icon" />
         <link rel="stylesheet" type="text/css" href="css/editor.css" />
 
-        <script type="text/javascript" src="${docserviceApiUrl}"></script>
+        <script type="text/javascript" src="scripts/ap.js"></script>
 
         <script type="text/javascript" language="javascript">
 
