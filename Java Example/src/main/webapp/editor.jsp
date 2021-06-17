@@ -1,39 +1,40 @@
-<%@page import="entities.FileModel"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="entities.FileModel" %>
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 
 <% FileModel Model = (FileModel) request.getAttribute("file"); %>
 
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <!--
-        *
-        * (c) Copyright Ascensio System SIA 2021
-        *
-        * Licensed under the Apache License, Version 2.0 (the "License");
-        * you may not use this file except in compliance with the License.
-        * You may obtain a copy of the License at
-        *
-        *     http://www.apache.org/licenses/LICENSE-2.0
-        *
-        * Unless required by applicable law or agreed to in writing, software
-        * distributed under the License is distributed on an "AS IS" BASIS,
-        * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-        * See the License for the specific language governing permissions and
-        * limitations under the License.
-        *
-        -->
-        <title>ONLYOFFICE</title>
-        <link rel="icon" href="css/img/<%= Model.documentType %>.ico" type="image/x-icon" />
-        <link rel="stylesheet" type="text/css" href="css/editor.css" />
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="mobile-web-app-capable" content="yes"/>
+    <!--
+    *
+    * (c) Copyright Ascensio System SIA 2021
+    *
+    * Licensed under the Apache License, Version 2.0 (the "License");
+    * you may not use this file except in compliance with the License.
+    * You may obtain a copy of the License at
+    *
+    *     http://www.apache.org/licenses/LICENSE-2.0
+    *
+    * Unless required by applicable law or agreed to in writing, software
+    * distributed under the License is distributed on an "AS IS" BASIS,
+    * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    * See the License for the specific language governing permissions and
+    * limitations under the License.
+    *
+    -->
+    <title>ONLYOFFICE</title>
+    <link rel="icon" href="css/img/<%= Model.documentType %>.ico" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="css/editor.css"/>
 
-        <script type="text/javascript" src="scripts/ap.js"></script>
+    <script type="text/javascript" src="${docserviceApiUrl}"></script>
 
-        <script type="text/javascript" language="javascript">
+    <script type="text/javascript" language="javascript">
 
         var docEditor;
 
@@ -64,7 +65,7 @@
             location.reload(true);
         };
 
-        var replaceActionLink = function(href, linkParam) {
+        var replaceActionLink = function (href, linkParam) {
             var link;
             var actionIndex = href.indexOf("&actionLink=");
             if (actionIndex != -1) {
@@ -93,14 +94,14 @@
             docEditor.setFavorite(favorite);
         };
 
-        var onRequestInsertImage = function(event) {
+        var onRequestInsertImage = function (event) {
             docEditor.insertImage({
                 "c": event.data.c,
                 ${dataInsertImage}
             })
         };
 
-        var onRequestCompareFile = function() {
+        var onRequestCompareFile = function () {
             docEditor.setRevisedFile(${dataCompareFile});
         };
 
@@ -111,6 +112,12 @@
         var config = JSON.parse('<%= FileModel.Serialize(Model) %>');
         config.width = "100%";
         config.height = "100%";
+        config.editorConfig.customization.logo =
+            {
+                image: "http://www.giport.ru/img/news/2007/04/20070409150058.gif",
+                imageEmbedded: "http://www.giport.ru/img/news/2007/04/20070409150058.gif",
+                url: "https://www.onlyoffice.com"
+            }
         config.events = {
             "onAppReady": onAppReady,
             "onDocumentStateChange": onDocumentStateChange,
@@ -131,17 +138,17 @@
         %>
 
         <% if (!history.isEmpty() && !historyData.isEmpty()) { %>
-            config.events['onRequestHistory'] = function () {
-                docEditor.refreshHistory(<%= history %>);
-            };
-            config.events['onRequestHistoryData'] = function (event) {
-                var ver = event.data;
-                var histData = <%= historyData %>;
-                docEditor.setHistoryData(histData[ver - 1]);
-            };
-            config.events['onRequestHistoryClose'] = function () {
-                document.location.reload();
-            };
+        config.events['onRequestHistory'] = function () {
+            docEditor.refreshHistory(<%= history %>);
+        };
+        config.events['onRequestHistoryData'] = function (event) {
+            var ver = event.data;
+            var histData = <%= historyData %>;
+            docEditor.setHistoryData(histData[ver - 1]);
+        };
+        config.events['onRequestHistoryClose'] = function () {
+            document.location.reload();
+        };
         <% } %>
 
         var сonnectEditor = function () {
@@ -156,10 +163,10 @@
 
     </script>
 
-    </head>
-    <body>
-        <div class="form">
-            <div id="iframeEditor"></div>
-        </div>
-    </body>
+</head>
+<body>
+<div class="form">
+    <div id="iframeEditor"></div>
+</div>
+</body>
 </html>
