@@ -59,15 +59,16 @@ header {
 }
 
 header img {
-    margin: 220px 0 220px 320px;
+    margin: 22px 0 22px 32px;
 }
 
 .center {
+    position: relative;
     margin: 0 auto 0;
     width: 1152px;
 }
 
-.main{
+.main {
     height: calc(100% - 136px);
     min-height: 536px;
 }
@@ -78,7 +79,7 @@ header img {
     min-height: 536px;
 }
 
-.section{
+.section {
     height: 100%;
     padding: 0;
     vertical-align: top;
@@ -166,7 +167,7 @@ label .checkbox {
     align-items: center;
     border-radius: 3px;
     box-sizing: border-box;
-    cursor:pointer;
+    cursor: pointer;
     display: inline-block;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -197,7 +198,7 @@ label .checkbox {
     cursor: default;
 }
 
-.button.orange:not(.disable):hover{
+.button.orange:not(.disable):hover {
     background: #ff7a4b;
 }
 
@@ -265,7 +266,7 @@ label .checkbox {
     margin: 30px 40px
 }
 
-#mainProgress .uploadFileName{
+#mainProgress .uploadFileName {
     background-position: left center;
     background-repeat: no-repeat;
     display: block;
@@ -353,19 +354,32 @@ footer {
     background: #333333;
     color: #AAAAAA;
     height: 64px;
-    min-width: 1152px;
-    width: auto;
+    /*min-width: 1152px;*/
+    width: 100%;
+}
+
+footer > .center {
+    width: 100%;
 }
 
 footer table {
+    width: 100%;
     border-spacing: 0;
 }
 
 footer table tr {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    flex-wrap: wrap;
+    width: 100%;
     height: 64px;
 }
 
 footer table td {
+    position: relative;
     padding-left: 32px;
 }
 
@@ -381,8 +395,16 @@ footer a:hover {
     text-decoration: none;
 }
 
+footer table tr td:first-child {
+    margin-left: 14%;
+}
+
 .copy {
-    padding-left: 510px;
+    width: max-content;
+    position: relative;
+    margin-left: auto;
+    margin-right: 14%;
+    /*padding-left: 510px;*/
 }
 
 .help-block {
@@ -448,7 +470,7 @@ footer a:hover {
     -webkit-border-radius: 0 !important;
     color: #F5F5F5 !important;
     font-size: 16px !important;
-    font-weight: 600!important;
+    font-weight: 600 !important;
     line-height: 133%;
     letter-spacing: -0.02em;
     padding: 14px 16px 14px 46px !important;
@@ -470,7 +492,7 @@ footer a:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     -moz-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    -webkit-box-shadow:0 2px 4px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
     padding: 0 !important;
 }
 
@@ -499,7 +521,7 @@ footer a:hover {
     padding-top: 10px;
 }
 
-.tableHeader tr{
+.tableHeader tr {
     background: transparent;
     cursor: default;
     height: 40px;
@@ -520,21 +542,21 @@ footer a:hover {
     width: 37%;
 }
 
-.tableHeaderCellEditors{
+.tableHeaderCellEditors {
     width: 29%;
 }
 
-.tableHeaderCellViewers{
+.tableHeaderCellViewers {
     width: 11%;
 }
 
-.tableHeaderCellDownload{
+.tableHeaderCellDownload {
     width: 13%;
     text-align: right;
     padding-right: 20px;
 }
 
-.tableHeaderCellRemove{
+.tableHeaderCellRemove {
     text-align: left;
 }
 
@@ -561,12 +583,12 @@ footer a:hover {
 .select-user {
     color: #444444;
     font-family: Open Sans;
-    font-size: 12px!important;
-    font-weight: normal!important;
-    line-height: 16px!important;
+    font-size: 12px !important;
+    font-weight: normal !important;
+    line-height: 16px !important;
 }
 
-.info{
+.info {
     cursor: pointer;
     padding: 3px 5px;
     position: absolute;
@@ -581,9 +603,9 @@ footer a:hover {
     max-width: 312px;
     padding: 14px;
     position: absolute;
-  }
+}
 
-.arrow{
+.arrow {
     border-top: 8px solid transparent;
     border-bottom: 8px solid transparent;
     border-right: 8px solid #FFFFFF;
@@ -619,7 +641,11 @@ footer a:hover {
 }
 
 .left-panel {
-    width: 256px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    max-width: 240px;
+    width: 100%;
     background: #F5F5F5;
 }
 
@@ -669,7 +695,7 @@ footer a:hover {
 }
 
 .errorInput {
-    border-color: #CB0000!important;
+    border-color: #CB0000 !important;
 }
 
 .errorPass {
@@ -679,3 +705,445 @@ footer a:hover {
     letter-spacing: -0.02em;
     word-wrap: break-word;
 }
+
+.menu {
+    cursor: pointer;
+    display: none;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-between;
+    top: 23px;
+    left: 12px;
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 30px;
+}
+
+.menu span {
+    content: "";
+    width: 26px;
+    height: 3px;
+    background: rgb(194, 194, 194);
+}
+
+html {
+    overflow-x: hidden;
+}
+
+
+.tableRow {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    position: relative;
+}
+
+
+.tableRow td:first-child {
+    flex-grow: 1;
+}
+
+.tableHeaderCellFileName {
+    width: 30%;
+}
+
+.tableHeaderCellEditors {
+    width: 28%;
+}
+
+.tableHeaderCellViewers {
+    text-align: center;
+    width: 18%
+}
+
+@media (min-width: 1280px)  and (max-width: 1380px) {
+    .copy {
+        margin-right: 6.5%;
+    }
+
+    footer table tr td:first-child {
+        margin-left: 6.5%;
+    }
+
+}
+
+@media (max-width: 1280px)  and (min-width: 1080px) {
+
+    .tableRow td:first-child {
+        flex-grow: 1;
+        width: 25%;
+    }
+
+    .tableHeaderCellFileName {
+        width: 25%;
+    }
+
+    .tableHeaderCellEditors {
+        width: 13%;
+    }
+
+    .tableHeaderCellViewers {
+        width: 29%;
+        text-align: end;
+    }
+
+    .tableHeaderCellDownload {
+        width: 21%;
+    }
+
+    .tableHeaderCellRemove {
+        padding-left: 12px;
+    }
+
+    footer table tr td:first-child {
+        margin-left: 5%;
+    }
+
+    .copy {
+        margin-right: 5%;
+        padding-right: 32px;
+    }
+
+    .left-panel {
+        margin-left: 48px;
+        width: 95%;
+    }
+}
+
+@media (max-width: 1008px) {
+    .left-panel {
+        margin-left: 0;
+        width: 94%;
+    }
+
+    .main-panel {
+        left: -1%;
+        padding: 48px 26px 24px;
+    }
+}
+
+@media (max-width: 768px) and (min-width: 593px) {
+    .tableRow {
+        width: 65%;
+    }
+
+    .tableRow td:first-child {
+        border: none;
+        flex-grow: 1;
+        width: 100%;
+    }
+
+    .tableHeader {
+        display: none;
+    }
+
+    .scroll-table-body {
+        top: 31px;
+    }
+
+    footer {
+        height: 80px;
+    }
+
+    .left-panel {
+        width: 90%;
+    }
+
+    .main-panel {
+        left: -2%;
+        padding: 48px 18px 24px;
+    }
+
+    footer table td {
+        margin-left: 0;
+        margin-right: 0;
+        padding-right: 4px;
+        padding-left: 4px;
+    }
+
+    .copy {
+        margin-right: 0.5%;
+        padding-right: 1%;
+    }
+
+    footer table tr td:first-child {
+        margin-left: 0.5%;
+        padding-left: 1%;
+        margin-right: 1.5%;
+    }
+
+    .contentCells-shift {
+        padding-right: 22px;
+    }
+}
+
+@media (max-width: 681px) and (min-width: 593px) {
+
+    .left-panel {
+        width: 70%;
+    }
+
+    .main-panel {
+        left: -5.5%;
+        padding: 48px 0px 24px;
+    }
+
+    .help-block {
+        margin: 48px 20px 24px;
+    }
+}
+@media (max-width: 1080px) {
+    .copy {
+        margin-right: 32px;
+    }
+
+    footer table tr td:first-child {
+        margin-left: 0;
+    }
+}
+@media (max-width: 593px ) {
+    .tableHeader {
+        display: none;
+    }
+
+    .scroll-table-body {
+        top: 31px;
+    }
+
+    .menu {
+        display: flex;
+    }
+
+    header .center > a {
+        position: absolute;
+        left: 30px;
+    }
+
+    footer table tr {
+        justify-content: center;
+    }
+
+    footer table td {
+        padding-top: 16px;
+        padding-right: 32px;
+        padding-left: 32px;
+    }
+
+    footer {
+        height: 80px;
+    }
+
+    .copy {
+        margin: 0;
+    }
+
+    .left-panel {
+        width: 62%;
+    }
+
+    .help-block {
+        margin: 16px 10px 6px;
+    }
+
+    .main-panel {
+        left: -9%;
+        padding: 16px 0 6px;
+    }
+
+    .tableRow td:first-child {
+        border: none;
+        width: 100%;
+    }
+
+    .tableRow {
+        width: 50%;
+    }
+    .tableRow td{
+        border: none;
+    }
+    #firstContentCell-shift ~ td{
+        border-bottom: 1px solid #e5e5e5;
+    }
+    #firstContentCell-shift {
+        border: none;
+        flex-basis: 10%;
+        flex-grow: 1;
+    }
+    #downloadContentCell-shift{
+        padding-left: 43px;
+        padding-right: 4px;
+    }
+    .contentCells-icon{
+        width: 14%;
+    }
+    .tableRow td:last-child{
+        width: 12%;
+    }
+    .contentCells-shift{
+        padding-right: 35px;
+    }
+}
+@media (max-width: 560px) and (min-width: 510px){
+    .contentCells-icon{
+        width: 12%;
+    }
+    #downloadContentCell-shift{
+        padding-left: 35px;
+    }
+}
+@media (max-width: 510px)  and (min-width: 470px){
+    .contentCells-icon{
+        width: 10%;
+    }
+    #downloadContentCell-shift{
+        padding-left: 25px;
+    }
+    #firstContentCell-shift {
+        flex-basis: 21%;
+    }
+}
+
+@media (max-width: 470px)  and (min-width: 420px){
+    .contentCells-icon{
+        width: 8%;
+    }
+    #downloadContentCell-shift{
+        padding-left: 16px;
+    }
+    #firstContentCell-shift {
+        flex-basis: 33%;
+    }
+}
+@media (max-width: 430px) and (min-width: 320px) {
+    footer table td {
+        margin: 0;
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+
+    .copy {
+        padding-right: 5px;
+        margin: 0;
+    }
+}
+
+@media (max-width: 1160px) {
+    .left-panel {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 1080px) and (min-width: 970px) {
+    .tableHeader {
+        width: 90%;
+    }
+
+    .tableRow td:first-child {
+        flex-grow: 0;
+        width: 15%;
+    }
+
+    .tableHeaderCellFileName {
+        width: 17%;
+    }
+
+    .tableHeaderCellEditors {
+        width: 13%;
+    }
+
+    .tableHeaderCellViewers {
+        text-align: end;
+        width: 33%;
+    }
+
+    .tableHeaderCellDownload {
+        width: 23%;
+    }
+}
+
+@media (max-width: 970px) and (min-width: 890px) {
+    .tableHeader {
+        width: 75%;
+    }
+
+    .tableHeaderCellEditors {
+        width: 26%;
+        text-align: start;
+    }
+
+    .tableHeaderCellFileName {
+        width: 21%;
+    }
+
+    .tableHeaderCellViewers {
+        width: 29%;
+        text-align: center;
+    }
+
+    .tableHeaderCellDownload {
+        width: 10%;
+    }
+
+    .tableRow {
+        width: 95%;
+    }
+
+    .tableRow td:last-child {
+        padding-right: 38px;
+    }
+
+    .tableRow td:first-child {
+        flex-grow: 0;
+        width: 15%;
+    }
+
+    .contentCells-icon {
+        width: 3%;
+    }
+}
+
+@media (max-width: 890px) and (min-width: 768px ) {
+    .contentCells-shift {
+        padding-right: 28px;
+    }
+
+    .main-panel {
+        width: 580px;
+    }
+
+    .tableRow {
+        width: 95%;
+    }
+
+    .tableHeader {
+        width: 95%;
+    }
+
+    .tableHeaderCellViewers {
+        width: 22%;
+        text-align: end;
+    }
+
+    .tableHeaderCellDownload {
+        padding-right: 0;
+        width: 20%;
+        text-align: end;
+    }
+
+    .tableHeaderCellFileName {
+        width: 20%;
+    }
+
+    .tableHeaderCellEditors {
+        text-align: start;
+        width: 31%;
+    }
+
+    .tableHeaderCellViewers {
+        width: 18%;
+    }
+}
+
+
