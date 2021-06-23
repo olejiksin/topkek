@@ -203,7 +203,7 @@
                                                                     </a>
                                                                 <% } %>
                                                             </td>
-                                                            <td class="contentCells contentCells-shift contentCells-icon" id="firstContentCell-shift">
+                                                            <td class="contentCells contentCells-shift contentCells-icon" id="firstContentCellShift">
                                                                 <% if (docType.equals("word")) { %>
                                                                     <a href="EditorServlet?fileName=<%= URLEncoder.encode(files[i].getName(), "UTF-8") %>&type=desktop&mode=blockcontent" target="_blank">
                                                                         <img src="css/img/block-content-24.png" alt="Open in editor without content control modification" title="Open in editor without content control modification"/>
@@ -225,7 +225,7 @@
                                                                     <img src="css/img/embeded-24.png" alt="Open in embedded mode" title="Open in embedded mode"/>
                                                                 </a>
                                                             </td>
-                                                            <td class="contentCells contentCells-icon contentCells-shift" id="downloadContentCell-shift">
+                                                            <td class="contentCells contentCells-icon contentCells-shift" id="downloadContentCellShift">
                                                                 <a href="IndexServlet?type=download&name=<%=URLEncoder.encode(files[i].getName(), "UTF-8")%>">
                                                                     <img class="icon-download" src="css/img/download-24.png" alt="Download" title="Download" />
                                                                 </a>

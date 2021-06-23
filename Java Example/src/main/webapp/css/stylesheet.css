@@ -963,15 +963,15 @@ html {
     .tableRow td{
         border: none;
     }
-    #firstContentCell-shift ~ td{
+    #firstContentCellShift ~ td{
         border-bottom: 1px solid #e5e5e5;
     }
-    #firstContentCell-shift {
+    #firstContentCellShift {
         border: none;
         flex-basis: 10%;
         flex-grow: 1;
     }
-    #downloadContentCell-shift{
+    #downloadContentCellShift{
         padding-left: 43px;
         padding-right: 4px;
     }
@@ -989,7 +989,7 @@ html {
     .contentCells-icon{
         width: 12%;
     }
-    #downloadContentCell-shift{
+    #downloadContentCellShift{
         padding-left: 35px;
     }
 }
@@ -997,10 +997,10 @@ html {
     .contentCells-icon{
         width: 10%;
     }
-    #downloadContentCell-shift{
+    #downloadContentCellShift{
         padding-left: 25px;
     }
-    #firstContentCell-shift {
+    #firstContentCellShift {
         flex-basis: 21%;
     }
 }
@@ -1009,10 +1009,10 @@ html {
     .contentCells-icon{
         width: 8%;
     }
-    #downloadContentCell-shift{
+    #downloadContentCellShift{
         padding-left: 16px;
     }
-    #firstContentCell-shift {
+    #firstContentCellShift {
         flex-basis: 33%;
     }
 }
