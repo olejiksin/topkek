@@ -742,7 +742,9 @@ html {
 
 
 .tableRow td:first-child {
+    display: flex;
     flex-grow: 1;
+    max-width: 25%;
 }
 
 .tableHeaderCellFileName {
@@ -812,6 +814,40 @@ html {
     }
 }
 
+@media (max-width: 1080px) {
+    .copy {
+        margin-right: 32px;
+    }
+
+    footer table tr td:first-child {
+        margin-left: 0;
+    }
+
+    .tableRow {
+        width: 90%;
+    }
+
+    .tableHeaderCellFileName {
+        width: 16%;
+    }
+
+    .tableHeaderCellEditors {
+        width: 13%;
+    }
+
+    .tableHeaderCellViewers {
+        width: 38%;
+    }
+
+    .tableHeaderCellDownload {
+        width: 22%;
+    }
+
+    .tableHeaderCellRemove {
+        padding-left: 8px;
+    }
+}
+
 @media (max-width: 1008px) {
     .left-panel {
         margin-left: 0;
@@ -826,13 +862,14 @@ html {
 
 @media (max-width: 768px) and (min-width: 593px) {
     .tableRow {
-        width: 65%;
+        width: 55%;
     }
 
     .tableRow td:first-child {
         border: none;
         flex-grow: 1;
         width: 100%;
+        max-width: 100%;
     }
 
     .tableHeader {
@@ -879,6 +916,12 @@ html {
     }
 }
 
+@media (max-width: 715px) {
+    .tableRow {
+        width: 45%;
+    }
+}
+
 @media (max-width: 681px) and (min-width: 593px) {
 
     .left-panel {
@@ -894,14 +937,150 @@ html {
         margin: 48px 20px 24px;
     }
 }
-@media (max-width: 1080px) {
-    .copy {
-        margin-right: 32px;
+
+@media (max-width: 1080px) and (min-width: 970px) {
+    .tableHeader {
+        width: 90%;
     }
 
-    footer table tr td:first-child {
-        margin-left: 0;
+    .tableRow td:first-child {
+        flex-grow: 0;
+        width: 15%;
     }
+
+    .tableHeaderCellFileName {
+        width: 16%;
+    }
+
+    .tableHeaderCellEditors {
+        width: 13%;
+    }
+
+    .tableHeaderCellViewers {
+        text-align: end;
+        width: 37%;
+    }
+
+    .tableHeaderCellDownload {
+        width: 22%;
+    }
+}
+
+@media (max-width: 970px) and (min-width: 890px) {
+    .tableHeader {
+        width: 75%;
+    }
+
+    .tableHeaderCellEditors {
+        width: 26%;
+        text-align: start;
+    }
+
+    .tableHeaderCellFileName {
+        width: 17%;
+    }
+
+    .tableHeaderCellViewers {
+        width: 27%;
+        text-align: end;
+    }
+
+    .tableHeaderCellDownload {
+        width: 20%;
+    }
+
+    .tableHeaderCellRemove {
+        padding-left: 0;
+    }
+
+    .tableRow {
+        width: 75%;
+    }
+
+    .tableRow td:last-child {
+        padding-right: 38px;
+    }
+
+    .tableRow td:first-child {
+        flex-grow: 0;
+        width: 15%;
+    }
+
+    .contentCells-icon {
+        width: 3%;
+    }
+}
+
+@media (max-width: 890px) and (min-width: 767px ) {
+    .contentCells-shift {
+        padding-right: 28px;
+    }
+
+    .main-panel {
+        width: 580px;
+    }
+
+    .tableRow {
+        width: 95%;
+    }
+
+    .tableHeader {
+        width: 95%;
+    }
+
+    .tableHeaderCellViewers {
+        width: 22%;
+        text-align: end;
+    }
+
+    .tableHeaderCellDownload {
+        padding-right: 0;
+        width: 20%;
+        text-align: end;
+    }
+
+    .tableHeaderCellFileName {
+        width: 20%;
+    }
+
+    .tableHeaderCellEditors {
+        text-align: start;
+        width: 31%;
+    }
+
+    .tableHeaderCellViewers {
+        width: 18%;
+    }
+}
+
+@media (max-width: 890px) {
+    .tableRow td:first-child {
+        max-width: 17%;
+    }
+}
+
+.firstContentCellViewers:after {
+    top: 33px;
+    left: 0;
+    content: "";
+    background: #e5e5e5;
+    height: 1px;
+    position: absolute;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .tableRow td:first-child {
+        max-width: 100%;
+    }
+
+    .firstContentCellViewers:after {
+        top: 65px;
+    }
+}
+
+.firstContentCellViewers {
+    margin-left: auto;
 }
 @media (max-width: 593px ) {
     .tableHeader {
@@ -958,64 +1137,83 @@ html {
     }
 
     .tableRow {
-        width: 50%;
+        width: 45%;
     }
-    .tableRow td{
+
+    .tableRow td {
         border: none;
     }
-    #firstContentCellShift ~ td{
-        border-bottom: 1px solid #e5e5e5;
-    }
-    #firstContentCellShift {
+
+
+    .firstContentCellShift {
         border: none;
         flex-basis: 10%;
         flex-grow: 1;
     }
-    #downloadContentCellShift{
+
+    .downloadContentCellShift {
         padding-left: 43px;
         padding-right: 4px;
     }
-    .contentCells-icon{
+
+    .contentCells-icon {
         width: 14%;
     }
-    .tableRow td:last-child{
+
+    .tableRow td:last-child {
         width: 12%;
     }
-    .contentCells-shift{
+
+    .contentCells-shift {
         padding-right: 35px;
     }
+    .firstContentCellShift ~ td {
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .firstContentCellViewers:after {
+        content: none;
+    }
 }
-@media (max-width: 560px) and (min-width: 510px){
-    .contentCells-icon{
+
+@media (max-width: 560px) and (min-width: 510px) {
+    .contentCells-icon {
         width: 12%;
     }
-    #downloadContentCellShift{
+
+    .downloadContentCellShift {
         padding-left: 35px;
     }
 }
-@media (max-width: 510px)  and (min-width: 470px){
-    .contentCells-icon{
+
+@media (max-width: 510px)  and (min-width: 470px) {
+    .contentCells-icon {
         width: 10%;
     }
-    #downloadContentCellShift{
+
+    .downloadContentCellShift {
         padding-left: 25px;
     }
-    #firstContentCellShift {
+
+    .firstContentCellShift {
         flex-basis: 21%;
     }
 }
 
-@media (max-width: 470px)  and (min-width: 420px){
-    .contentCells-icon{
+@media (max-width: 470px)  and (min-width: 420px) {
+    .contentCells-icon {
         width: 8%;
     }
-    #downloadContentCellShift{
+
+    .downloadContentCellShift {
         padding-left: 16px;
     }
-    #firstContentCellShift {
+
+    .firstContentCellShift {
         flex-basis: 33%;
     }
 }
+
 @media (max-width: 430px) and (min-width: 320px) {
     footer table td {
         margin: 0;
@@ -1032,117 +1230,6 @@ html {
 @media (max-width: 1160px) {
     .left-panel {
         margin-left: 0;
-    }
-}
-
-@media (max-width: 1080px) and (min-width: 970px) {
-    .tableHeader {
-        width: 90%;
-    }
-
-    .tableRow td:first-child {
-        flex-grow: 0;
-        width: 15%;
-    }
-
-    .tableHeaderCellFileName {
-        width: 17%;
-    }
-
-    .tableHeaderCellEditors {
-        width: 13%;
-    }
-
-    .tableHeaderCellViewers {
-        text-align: end;
-        width: 33%;
-    }
-
-    .tableHeaderCellDownload {
-        width: 23%;
-    }
-}
-
-@media (max-width: 970px) and (min-width: 890px) {
-    .tableHeader {
-        width: 75%;
-    }
-
-    .tableHeaderCellEditors {
-        width: 26%;
-        text-align: start;
-    }
-
-    .tableHeaderCellFileName {
-        width: 21%;
-    }
-
-    .tableHeaderCellViewers {
-        width: 29%;
-        text-align: center;
-    }
-
-    .tableHeaderCellDownload {
-        width: 10%;
-    }
-
-    .tableRow {
-        width: 95%;
-    }
-
-    .tableRow td:last-child {
-        padding-right: 38px;
-    }
-
-    .tableRow td:first-child {
-        flex-grow: 0;
-        width: 15%;
-    }
-
-    .contentCells-icon {
-        width: 3%;
-    }
-}
-
-@media (max-width: 890px) and (min-width: 768px ) {
-    .contentCells-shift {
-        padding-right: 28px;
-    }
-
-    .main-panel {
-        width: 580px;
-    }
-
-    .tableRow {
-        width: 95%;
-    }
-
-    .tableHeader {
-        width: 95%;
-    }
-
-    .tableHeaderCellViewers {
-        width: 22%;
-        text-align: end;
-    }
-
-    .tableHeaderCellDownload {
-        padding-right: 0;
-        width: 20%;
-        text-align: end;
-    }
-
-    .tableHeaderCellFileName {
-        width: 20%;
-    }
-
-    .tableHeaderCellEditors {
-        text-align: start;
-        width: 31%;
-    }
-
-    .tableHeaderCellViewers {
-        width: 18%;
     }
 }
 
