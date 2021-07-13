@@ -164,7 +164,7 @@
                                                 <tbody>
                                                     <% for (Integer i = 0; i < files.length; i++) { %>
                                                         <% String docType = FileUtility.GetFileType(files[i].getName()).toString().toLowerCase(); %>
-                                                        <tr class="tableRow" title="<%= files[i].getName() %>">
+                                                        <tr class="tableRow" title="<%= files[i].getName()%> [4]" >
                                                             <td class="contentCells">
                                                                 <a class="stored-edit <%= docType %>" href="EditorServlet?fileName=<%= URLEncoder.encode(files[i].getName(), "UTF-8") %>" target="_blank">
                                                                     <span title="<%= files[i].getName() %>"><%= files[i].getName() %></span>
