@@ -1,4 +1,4 @@
-[submodule "csharp-core/OnlineEditorsExampleNetCore/wwwroot/assets"]
-	path = csharp-core/OnlineEditorsExampleNetCore/wwwroot/assets
+[submodule "csharp-core/wwwroot/assets"]
+	path = csharp-core/wwwroot/assets
 	url = https://github.com/ONLYOFFICE/document-templates
 	branch = main/en
